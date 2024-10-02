@@ -2,34 +2,34 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Input } from '../ui/input'
+import { Bell, Menu, Search, User } from 'lucide-react'
 
 const Navbar = () => {
   return (
     <div className=''>
     <nav className="  border-b border-white/15 fixed z-50 w-full bg-transparent backdrop-blur-lg px-6 py-4 lg:px-10">
-      <Link href="/" className="flex items-center gap-1">
-        <Image
-          src="/logo.svg"
-          width={32}
-          height={32}
-          alt="yoom logo"
-          className="max-sm:size-10"
-        />
-        <p className="text-[26px] font-extrabold text-white max-sm:hidden">
-          Premium
-        </p>
-      </Link>
-      <div className='lg:flex hidden items-center justify-center -my-10  w-full'>
-        <div className='w-96 rounded-xl'>
-          <Input  className='rounded-xl border-white/10 w-full' placeholder='Uzmir Poralab' />
+    <header className="bg-transparent shadow-sm w-full backdrop-blur-3xl">
+        <div className="flex items-center justify-between px-4 ">
+          <div className="flex items-center">
+            <Menu className="w-6 h-6 mr-4 cursor-pointer" />
+            <a href='/' className="text-xl font-bold text-red-600">YouTube</a>
+          </div>
+          <div className="flex-1 max-w-xl mx-4">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:border-blue-500"
+              />
+              <Search className="absolute top-2 right-3 w-5 h-5 text-gray-500" />
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Bell className="w-6 h-6 cursor-pointer" />
+            <User className="w-6 h-6 cursor-pointer" />
+          </div>
         </div>
-      </div>
-      <div className="justify-end flex -mt-10 gap-5">
-        <img src="/svgs/video.svg" alt="" className='w-10 h-10 rounded-full' />
-        <img src="/svgs/notif.svg" alt="" className='w-10 h-10 rounded-full ' />
-        <img src="/vercel.jpeg" alt="" className='w-10 h-10 rounded-full' />
-      </div>
-   
+      </header>
     </nav>
     </div>
   )

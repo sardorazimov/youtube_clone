@@ -118,7 +118,7 @@ export function Navigation() {
   ];
 
   return (
-    <div className=" flex [perspective:1000px] b   flex-col max-w-5xl mx-auto w-full  items-start justify-start ">
+    <div className=" lg:flex hidden fixed overflow-ellipsis [perspective:1000px] b    max-w-5xl mx-auto w-full  items-start justify-start ">
       <Tabs tabs={tabs} />
     </div>
   );
