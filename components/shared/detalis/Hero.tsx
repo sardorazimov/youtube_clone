@@ -46,7 +46,7 @@ const dummyVideos: Video[] = [
 const Hero = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
   return (
-    <div className='flex w-full flex-col h-screen py-14'>
+    <div className='flex w-full flex-col h-screen lg:py-14 -mt-4 lg:mt-1'>
       <div className="flex-1 p-4">
           {selectedVideo ? (
             <div className="mb-4">
