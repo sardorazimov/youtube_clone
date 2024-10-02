@@ -1,5 +1,6 @@
 "use client"
 import { Download, Share, ThumbsDown, ThumbsUp } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 interface Video {
@@ -45,6 +46,7 @@ const dummyVideos: Video[] = [
 
 const Hero = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
+  const router = useRouter()
   return (
     <div className='flex w-full flex-col h-screen lg:py-14 -mt-4 lg:mt-1'>
       <div className="flex-1 p-4">
@@ -63,13 +65,13 @@ const Hero = () => {
               </div>
               <h2 className="text-xl font-semibold mb-2">{selectedVideo.title}</h2>
               <div className="flex items-center justify-between mb-4">
-                <div>
+                <div >
                   <p className="text-gray-600">{selectedVideo.channel}</p>
                   <p className="text-sm text-gray-500">
                     {selectedVideo.views} • {selectedVideo.timestamp}
                   </p>
                 </div>
-                <div className="flex space-x-4">
+                {/* <div className="flex space-x-4">
                   <button className="flex items-center space-x-1">
                     <ThumbsUp className="w-5 h-5" />
                     <span>Like</span>
@@ -86,7 +88,7 @@ const Hero = () => {
                     <Download className="w-5 h-5" />
                     <span>Download</span>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           ) : (
@@ -95,7 +97,7 @@ const Hero = () => {
                 <div
                   key={video.id}
                   className="bg-white/5 rounded-lg shadow-md overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedVideo(video)}
+                  onClick={() => router.push('/videos')}
                 >
                   <img src={video.thumbnail} alt={video.title} className="w-full h-40 object-cover" />
                   <div className="p-4">
