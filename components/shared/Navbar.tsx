@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Input } from '../ui/input'
 import { Bell, Menu, Search, User } from 'lucide-react'
+import MobileNavbar from './MobileNavbar'
 
 const Navbar = () => {
   return (
@@ -11,7 +12,9 @@ const Navbar = () => {
     <header className="bg-transparent shadow-sm w-full backdrop-blur-3xl">
         <div className="flex items-center justify-between px-4 ">
           <div className="flex items-center">
-            <Menu className="w-6 h-6 mr-4 cursor-pointer" />
+            <div className='lg:hidden flex'>
+              <MobileNavbar />
+            </div>
             <a href='/' className="text-xl font-bold text-red-600">YouTube</a>
           </div>
           <div className="flex-1 max-w-xl mx-4">
