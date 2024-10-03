@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Search, Menu, Bell, User, ThumbsUp, ThumbsDown, Share, Download, MoreVertical } from 'lucide-react'
+import UserChanel from '@/components/shared/detalis/userchanell'
 
 interface Video {
   id: string
@@ -132,13 +133,14 @@ export default function EnhancedYouTubeClone() {
         <div className="flex-1 p-4">
           {selectedVideo && (
             <div className="mb-4">
-              <div className="aspect-w-16 aspect-h-9 mb-4">
+              <UserChanel />
+              {/* <div className="aspect-w-16 aspect-h-9 mb-4">
                 <video muted autoPlay controls
                 className='w-full h-full rounded-xl' 
                 src="/poralab.mp4"></video>
-              </div>
-              <h2 className="text-xl font-semibold mb-2">{selectedVideo.title}</h2>
-              <div className="flex items-center justify-between mb-4">
+              </div> */}
+              {/* <h2 className="text-xl font-semibold mb-2">{selectedVideo.title}</h2> */}
+              {/* <div className="flex items-center justify-between mb-4">
                 <div>
                   <a href='/channels'  className="0">{selectedVideo.channel}</a>
                   <p className="text-sm ">
@@ -166,7 +168,7 @@ export default function EnhancedYouTubeClone() {
                     <MoreVertical className="w-4 h-4" />
                   </Button>
                 </div>
-              </div>
+              </div> */}
               <div className="mb-4">
                 <h3 className="text-lg font-semibold mb-2">Comments</h3>
                 <div className="flex items-start space-x-2 mb-4">
