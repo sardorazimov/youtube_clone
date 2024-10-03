@@ -100,7 +100,7 @@ export default function ChannelPage() {
 
   return (
     <div className="flex flex-col min-h-screen  items-center">
-      <header className=" shadow-sm">
+      {/* <header className=" shadow-sm">
         <div className="flex items-center justify-between px-4 py-2">
           <div className="flex items-center">
             <Menu className="w-6 h-6 mr-4 cursor-pointer" />
@@ -124,7 +124,7 @@ export default function ChannelPage() {
             </Avatar>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <main className="flex-1">
         <div className="relative">
