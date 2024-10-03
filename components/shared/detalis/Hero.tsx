@@ -1,117 +1,110 @@
-"use client"
-import { Download, Share, ThumbsDown, ThumbsUp } from "lucide-react"
-import { useState } from "react"
+'use client'
+import { useState } from 'react'
+import { Play, Pause, MoreVertical } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
-interface Video {
-  id: string
-  title: string
-  channel: string
-  views: string
-  timestamp: string
-  thumbnail: string
-  videoUrl?: string
-}
-
-const dummyVideos: Video[] = [
+const videos = [
   {
-    id: '1',
-    title: 'Building a YouTube Clone with React and TypeScript',
-    channel: 'Uzmir',
-    views: '100M views',
-    timestamp: '1 yaers ago',
-    thumbnail: 'https://i.ytimg.com/vi/_SEPHLvqDjs/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWChIMA8=&rs=AOn4CLCAcJSibyNz2Vy_vKvrHuOwc3XTzA',
-    videoUrl: 'https://youtu.be/NLmByXTPlcE?si=KNRB_quKrbZRocKa',
+    id: 1,
+    title: 'UZMIR FOYDALANDIM',
+    channel: 'Mening miksim',
+    views: '1.2M',
+    time: '2 hafta oldin',
+    duration: 'Miks',
+    thumbnail: '/lena.jpeg',
   },
   {
-    id: '2',
-    title: 'TypeScript Tips and Tricks for Beginners',
-    channel: 'Uzmir',
-    views: '50K views',
-    timestamp: '1 week ago',
-    thumbnail: "https://i.ytimg.com/vi/_SEPHLvqDjs/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWChIMA8=&rs=AOn4CLCAcJSibyNz2Vy_vKvrHuOwc3XTzA" ,
-    videoUrl: 'https://youtu.be/NLmByXTPlcE?list=RDeDHzY9jjjGg',
-    
+    id: 2,
+    title: 'ELEŞTİREL KESTANE | BÖLÜM 4 | FETİH 1453',
+    channel: 'Filmler ve Filimler',
+    views: '921 ming marta',
+    time: '3 yil oldin',
+    duration: '11:58',
+    thumbnail: '/lena.jpeg',
   },
   {
-    id: '3',
-    title: 'React Hooks Explained',
-    channel: 'React Ninjas',
-    views: '200K views',
-    timestamp: '3 days ago',
-    thumbnail: 'https://i.ytimg.com/vi/_SEPHLvqDjs/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgWChIMA8=&rs=AOn4CLCAcJSibyNz2Vy_vKvrHuOwc3XTzA',
-    videoUrl: 'https://youtu.be/NLmByXTPlcE?list=RDeDHzY9jjjGg',
+    id: 3,
+    title: 'PROPHUNTER → QANI ULAR ?? BERKINMACHOQ | KHIVA GAME #1',
+    channel: 'KHIVA GAME',
+    views: '4,6 ming marta',
+    time: '10 soat oldin',
+    duration: '55:24',
+    thumbnail: '/lena.jpeg',
+  },
+  {
+    id: 4,
+    title: '"KICHKINA SHAHARDAN KATTA ODAMLAR" OZOD SHUKRULLOYEV',
+    channel: 'Artel',
+    views: '500K',
+    time: '1 oy oldin',
+    duration: '1:30:16',
+    thumbnail: '/lena.jpeg',
+  },
+  {
+    id: 5,
+    title: 'GOD OF WAR İLK BÖLÜM',
+    channel: 'Vızzık Channel',
+    views: '1.5M',
+    time: '2 yil oldin',
+    duration: '20:14',
+    thumbnail: '/lena.jpeg',
+  },
+  {
+    id: 6,
+    title: 'Yangi Miks',
+    channel: 'Mening Kanalim',
+    views: '100K',
+    time: '3 kun oldin',
+    duration: 'Miks',
+    thumbnail: '/lena.jpeg',
   },
 ]
 
-const Hero = () => {
-  const [selectedVideo, setSelectedVideo] = useState<Video | null>(null)
+export default function Hero() {
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null)
+  const router = useRouter()
+
+  const togglePlay = (id: number) => {
+    setPlayingVideo(playingVideo === id ? null : id)
+  }
+
   return (
-    <div className='flex w-full flex-col h-screen py-14'>
-      <div className="flex-1 p-4">
-          {selectedVideo ? (
-            <div className="mb-4">
-              <div className="aspect-w-16 aspect-h-9 mb-4">
-                {selectedVideo.videoUrl ? (
-                  <video src={'/poralab.mp4'} muted autoPlay controls className="w-full h-full" />
+    <div className=" py-24  p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {videos.map((video) => (
+          <div key={video.id} className=" rounded-lg overflow-hidden">
+            <div className=''>
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                className="w-full h-48 object-cover cursor-pointer"
+                onClick={() => router.push('/videos')} 
+              />
+              <div className="absolute bottom-1 right-1 bg-black bg-opacity-80 px-1 rounded text-xs">
+                {video.duration}
+              </div>
+              {/* <button
+               
+                onClick={() => togglePlay(video.id)}
+                className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-opacity"
+              >
+                {playingVideo === video.id ? (
+                  <Pause className="w-12 h-12" onClick={() => router.push('/videos')}  />
                 ) : (
-                  <img
-                    src={selectedVideo.thumbnail}
-                    alt={selectedVideo.title}
-                    className=" w-full h-full"
-                  />
+                  <Play className="w-12 h-12" />
                 )}
-              </div>
-              <h2 className="text-xl font-semibold mb-2">{selectedVideo.title}</h2>
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <p className="text-gray-600">{selectedVideo.channel}</p>
-                  <p className="text-sm text-gray-500">
-                    {selectedVideo.views} • {selectedVideo.timestamp}
-                  </p>
-                </div>
-                <div className="flex space-x-4">
-                  <button className="flex items-center space-x-1">
-                    <ThumbsUp className="w-5 h-5" />
-                    <span>Like</span>
-                  </button>
-                  <button className="flex items-center space-x-1">
-                    <ThumbsDown className="w-5 h-5" />
-                    <span>Dislike</span>
-                  </button>
-                  <button className="flex items-center space-x-1">
-                    <Share className="w-5 h-5" />
-                    <span>Share</span>
-                  </button>
-                  <button className="flex items-center space-x-1">
-                    <Download className="w-5 h-5" />
-                    <span>Download</span>
-                  </button>
-                </div>
-              </div>
+              </button> */}
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {dummyVideos.map((video) => (
-                <div
-                  key={video.id}
-                  className="bg-white/5 rounded-lg shadow-md overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedVideo(video)}
-                >
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-40 object-cover" />
-                  <div className="p-4">
-                    <h3 className="font-semibold mb-1">{video.title}</h3>
-                    <p className="text-sm text-gray-600">{video.channel}</p>
-                    <p className="text-xs text-gray-500">
-                      {video.views} • {video.timestamp}
-                    </p>
-                  </div>
-                </div>
-              ))}
+            <div className="p-3">
+              <h3 className="font-bold text-sm line-clamp-2">{video.title}</h3>
+              <p className="text-gray-400 text-xs mt-1">{video.channel}</p>
+              <p className="text-gray-400 text-xs">
+                {video.views} • {video.time}
+              </p>
             </div>
-          )}
-        </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
-
-export default Hero

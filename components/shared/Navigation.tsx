@@ -49,12 +49,12 @@ export default function NavigationBar() {
   }, [])
 
   return (
-    <div className="  max-w-full fixed bg-transparent text-white">
+    <div className="  max-w-full fixed bg-transparent text-white backdrop-blur-3xl -mt-3 rounded-xl">
       <div className="flex items-center">
         {showLeftArrow && (
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 z-10 p-2 bg-gray-900 hover:bg-gray-800 transition-colors"
+            className="absolute left-0 z-10 p-2 bg-white/10 hover:bg-white/20transition-colors"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -67,7 +67,7 @@ export default function NavigationBar() {
           {categories.map((category, index) => (
             <button
               key={index}
-              className="px-4 py-2 bg-gray-800 rounded-full whitespace-nowrap hover:bg-gray-700 transition-colors"
+              className="px-4 py-2 bg-white/10 rounded-full whitespace-nowrap hover:bg-white/20 transition-colors"
             >
               {category}
             </button>
